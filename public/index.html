@@ -6,10 +6,13 @@
 <body>
 	<h1>Calorie Counter App</h1>
 	<form>
-		<input>meal</input>
-		<input>calorie</input>
-		<input>date</input>
+		<input type="text" id="name">meal</input>
+		<input type="number" id="calories">calories</input>
+		<input type="date" id="date">date</input>
 	</form>
-	<button type="button" class="getAllItems">Create candies</button>
+	<button type="button" id="add">Add new meal</button>
+	<ul id="mealsList"></ul>
+
+	<script src="index.js"></script>
 </body>
 </html>

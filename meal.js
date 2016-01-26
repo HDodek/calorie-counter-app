@@ -6,7 +6,8 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'password',
-  database : 'calorie-counter'
+  database : 'calorie-counter',
+  timezone : 'utc'
 });
 
 connection.connect();
@@ -27,7 +28,6 @@ function addItems(attributes, callback) {
 
 function deleteItems(id, callback) {
 	connection.query("DELETE FROM meals WHERE id = ?", id, function (err, result) {
-		console.log(result);
 		if (err) throw err;
 		if  (result.affectedRows === 1) {
 			callback({"status": "ok"});
