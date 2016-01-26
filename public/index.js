@@ -7,7 +7,9 @@ var nameInput = document.getElementById('name');
 var caloriesInput = document.getElementById('calories');
 var dateInput = document.getElementById('date');
 var mealsContainer = document.getElementById('mealsList');
-var addButton = document.getElementById('add')
+var addButton = document.getElementById('add');
+var deleteButton = document.getElementById('delete');
+var deleteInput = document.getElementById('deleteitems')
 
 function listAllItemsFromServer(callback) {
 	var req = new XMLHttpRequest();
@@ -49,12 +51,35 @@ function postNewItemToServer(callback) {
 	}
 }
 
+function deleteFromServer(id, callback) {
+	var req = new XMLHttpRequest();
+	req.open("DELETE", url + "/" + id);
+	req.send();
+	req.onreadystatechange = function () {
+    if (req.readyState === 4) {
+      var response = JSON.parse(req.response);
+      return callback(response.id);
+}
+
+function deleteItemFromList(id) {
+	var deleteItem = document.getElementById(id);
+	deleteItem.remove();
+};
+
 addButton.addEventListener("click", function() {
 	postNewItemToServer(createSingleItem);
-})
+});
+
+deleteButton.addEventListener("click", function() {
+	deleteFromServer(deleteInput.value, deleteFromServer);
+	})
+}
 
 
 
 
 
 
+
+
+}
