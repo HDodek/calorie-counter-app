@@ -7,6 +7,7 @@ var nameInput = document.getElementById('name');
 var caloriesInput = document.getElementById('calories');
 var dateInput = document.getElementById('date');
 var mealsContainer = document.getElementById('mealsList');
+var addButton = document.getElementById('add')
 
 function listAllItemsFromServer(callback) {
 	var req = new XMLHttpRequest();
@@ -15,7 +16,6 @@ function listAllItemsFromServer(callback) {
 	req.onreadystatechange = function () {
 		if (req.readyState === 4) {
 			var mealItem = JSON.parse(req.response);
-			console.log(mealItem);
 			return callback(mealItem);
 		}
 	}
@@ -23,14 +23,35 @@ function listAllItemsFromServer(callback) {
 
 function listItems(mealItem) {
 	mealItem.forEach(function(meal) {
-		var meals = document.createElement("li");
-		meals.setAttribute("ID", meal.ID, "Name", meal.Name, "Calorie", meal.Calorie, "Date", meal.Date);
-		meals.innerText = (meal.ID,meal.name, meal.Name = "", meal.Calorie = 0, meal.Date = 0);
-		mealsContainer.appendChild(meals);
+		createSingleItem(meal);
 	})
 }
 
 listAllItemsFromServer(listItems);
+
+function createSingleItem(meal) {
+	var meals = document.createElement("li");
+		meals.innerText = meal.Name + " " + meal.Calorie + " " + "calories" + " " + meal.Date;
+		mealsContainer.appendChild(meals);
+}
+
+function postNewItemToServer(callback) {
+	var req = new XMLHttpRequest();
+	req.open("POST", url);
+	req.setRequestHeader('Content-Type', 'application/json');
+	var text = ({"Name": nameInput.value, "Calorie": caloriesInput.value, "Date": dateInput.value})
+	req.send(JSON.stringify(text));
+	req.onreadystatechange = function () {
+		if (req.readyState === 4) {
+			var res = JSON.parse(req.response);
+			return callback(text);
+		}
+	}
+}
+
+addButton.addEventListener("click", function() {
+	postNewItemToServer(createSingleItem);
+})
 
 
 
