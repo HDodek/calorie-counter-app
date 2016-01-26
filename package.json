@@ -1,0 +1,26 @@
+{
+  "name": "calorie-counter-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "nodemon": "^1.8.1",
+    "save": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HDodek/calorie-counter-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HDodek/calorie-counter-app/issues"
+  },
+  "homepage": "https://github.com/HDodek/calorie-counter-app#readme",
+  "description": ""
+}
