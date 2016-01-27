@@ -10,7 +10,7 @@ var mealsContainer = document.getElementById('mealsList');
 var addButton = document.getElementById('add');
 var allItemsButton = document.getElementById('all');
 var filterButton = document.getElementById('filter');
-var dateInput = document.getElementById('filterdate');
+var dateFilterInput = document.getElementById('filterdate');
 var sumCalories = document.getElementById('sumcalorie')
 
 function filterFromServer(url, callback) {
@@ -60,6 +60,9 @@ function listItems(res) {
 	})
 }
 
+
+
+
 function postNewItemToServer(callback) {
 	var req = new XMLHttpRequest();
 	req.open("POST", url);
@@ -68,19 +71,20 @@ function postNewItemToServer(callback) {
 	req.send(JSON.stringify(text));
 	req.onreadystatechange = function () {
 		if (req.readyState === 4) {
-			var res = JSON.parse(req.response);
-			return callback(res);
+			var item = JSON.parse(req.response);
+			return callback;
 		}
 	}
 }
 
 addButton.addEventListener("click", function() {
-	postNewItemToServer(listItems);
+	clearList();
+	postNewItemToServer(listAllItemsFromServer(listItems));
 });
 
 filterButton.addEventListener("click", function () {
 	clearList();
-	var newUrl = url + "/filter/" + dateInput.value;
+	var newUrl = url + "/filter/" + dateFilterInput.value;
 	filterFromServer(newUrl, listItems)
 	filterFromServer(newUrl, sumCal);
 });
