@@ -28,6 +28,13 @@ app.delete('/meals/:id', function (req, res) {
 
 })
 
+app.get('/meals/filter/:date', function (req, res) {
+	var date = req.params.date;
+	items.filterItemsByDate(date, function (result) {
+		res.status(200).json(result);
+	})
+})
+
 
 app.listen(3000, function () {
   console.log("Listening on port 3000...")

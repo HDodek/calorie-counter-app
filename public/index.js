@@ -8,8 +8,21 @@ var caloriesInput = document.getElementById('calories');
 var dateInput = document.getElementById('date');
 var mealsContainer = document.getElementById('mealsList');
 var addButton = document.getElementById('add');
-var deleteButton = document.getElementById('delete');
-var deleteInput = document.getElementById('deleteitems')
+var allItemsButton = document.getElementById('all');
+var filterButton = document.getElementById('filter');
+var dateInput = document.getElementById('filterdate')
+
+function filterFromServer(url, callback) {
+	var req = new XMLHttpRequest();
+	req.open("GET", url);
+	req.send();
+	req.onreadystatechange = function () {
+		if (req.readyState === 4) {
+			var res = JSON.parse(req.response);
+			return callback(res);
+		}
+	}
+}
 
 function listAllItemsFromServer(callback) {
 	var req = new XMLHttpRequest();
@@ -17,24 +30,22 @@ function listAllItemsFromServer(callback) {
 	req.send();
 	req.onreadystatechange = function () {
 		if (req.readyState === 4) {
-			var mealItem = JSON.parse(req.response);
-			return callback(mealItem);
+			var res = JSON.parse(req.response);
+			return callback(res);
 		}
 	}
 }
 
-function listItems(mealItem) {
-	mealItem.forEach(function(meal) {
-		createSingleItem(meal);
-	})
+function clearList() {
+	mealsContainer.innerText = "";
 }
 
-listAllItemsFromServer(listItems);
-
-function createSingleItem(meal) {
-	var meals = document.createElement("li");
+function listItems(res) {
+	res.forEach(function(meal) {
+		var meals = document.createElement("li");
 		meals.innerText = meal.Name + " " + meal.Calorie + " " + "calories" + " " + meal.Date;
 		mealsContainer.appendChild(meals);
+	})
 }
 
 function postNewItemToServer(callback) {
@@ -51,29 +62,22 @@ function postNewItemToServer(callback) {
 	}
 }
 
-function deleteFromServer(id, callback) {
-	var req = new XMLHttpRequest();
-	req.open("DELETE", url + "/" + id);
-	req.send();
-	req.onreadystatechange = function () {
-    if (req.readyState === 4) {
-      var response = JSON.parse(req.response);
-      return callback(response.id);
-}
-
-function deleteItemFromList(id) {
-	var deleteItem = document.getElementById(id);
-	deleteItem.remove();
-};
-
 addButton.addEventListener("click", function() {
-	postNewItemToServer(createSingleItem);
+	postNewItemToServer(listItems);
 });
 
-deleteButton.addEventListener("click", function() {
-	deleteFromServer(deleteInput.value, deleteFromServer);
-	})
-}
+filterButton.addEventListener("click", function () {
+	clearList();
+	var newUrl = url + "/filter/" + dateInput.value;
+	filterFromServer(newUrl, listItems)
+});
+
+allItemsButton.addEventListener("click", function () {
+	clearList();
+	listAllItemsFromServer(listItems);
+})
+
+listAllItemsFromServer(listItems);
 
 
 
@@ -82,4 +86,7 @@ deleteButton.addEventListener("click", function() {
 
 
 
-}
+
+
+
+

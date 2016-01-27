@@ -37,10 +37,18 @@ function deleteItems(id, callback) {
 	})
 }
 
+function filterItemsByDate(date, callback) {
+	connection.query("SELECT ID, Name, Calorie, Date FROM meals WHERE CAST(date AS DATE)=?", date, function (err, result) {
+		if (err) throw err;
+		callback(result);
+	})
+}
+
 
 
 module.exports = {
   getItems: getItems,
   addItems: addItems,
-  deleteItems: deleteItems
+  deleteItems: deleteItems,
+  filterItemsByDate: filterItemsByDate
 };
