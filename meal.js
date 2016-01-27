@@ -14,21 +14,21 @@ connection.connect();
 
 function getItems(callback) {
 	connection.query("SELECT  * FROM  meals", function (err, result) {
-		if (err) throw err;
+		if (err) console.log(err);
 		callback(result);
 	})
 }
 
 function addItems(attributes, callback) {
 	connection.query("INSERT INTO meals SET ?", attributes, function (err, result) {
-		if (err) throw err;
+		if (err) console.log(err);
 		callback({"status": "ok"});
 	})
 }
 
 function deleteItems(id, callback) {
 	connection.query("DELETE FROM meals WHERE id = ?", id, function (err, result) {
-		if (err) throw err;
+		if (err) console.log(err);
 		if  (result.affectedRows === 1) {
 			callback({"status": "ok"});
 		} else {
