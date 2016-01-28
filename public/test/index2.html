@@ -1,0 +1,29 @@
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+	<title>Calorie counter</title>
+</head>
+<body>
+	<h1>Calorie Counter App</h1>
+	<form>
+		<input type="text" id="name">meal</input>
+		<select>
+		  <option>meat</option>
+		  <option>wheat</option>
+		  <option>dairy product</option>
+		  <option>fruit, vegetable</option>
+		</select>
+		<input type="number" id="calories">calories</input>
+		<input type="datetime-local" id="date">date</input>
+	</form>
+	<button type="button" id="add">Add new meal</button>
+	<form>
+		<input type="date" id="filterdate"></input>
+	</form>
+	<button type="button" id="filter">Filter by day</button>
+	<button type="button" id="all">Show all</button>
+	<ul id="mealsList"></ul>
+	<div type="number" id="sumcalorie"></div>
+	<script src="index.js"></script>
+</body>
+</html>

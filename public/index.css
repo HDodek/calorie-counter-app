@@ -1,0 +1,165 @@
+body {
+    background-image: url("food.png");
+}
+
+@font-face {
+  font-family: quirlyc;
+  src: url(Quirlycues.ttf);
+       
+}
+
+.panel-default {
+    position: relative;
+    left: 300px;
+    height: 300px;
+    width: 500px;
+    border-color: #ddd;
+    background-color: grey;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    display: block;
+}
+
+#filter-box {
+    width: 300px;
+    border: 1px solid black;
+    position: relative;
+    top: 150px;
+    left: 300px;
+    padding: 5px;
+}
+
+#filterdate {
+    position: relative;
+    margin-left: 25px;
+}
+
+#filterbutton {
+    position: relative;
+    margin-left: 10px;
+}
+
+#listContainer {
+    border: 1px solid black;
+    width: 500px;
+    left: 300px;
+    position: relative;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+#listContainer>p {
+    font-family: quirlyc;
+    font-style: bold;
+    font-size: 30px;
+}
+
+#addfields {
+    border: 1px solid black;
+    width: 800px;
+    left: 300px;
+    position: relative;
+    top: 200px;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #6FE45A;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a button {
+    display: block;
+    text-decoration: none;
+    color: white;
+    width: 250px;
+    background-color: #6FE45A;
+    margin-bottom: 10px;
+    height: 60px;
+    border-color: black;
+    border: 0;
+    font-size: 35px;
+    margin-top: 5px;
+    font-family: quirlyc;
+}
+
+.sidebar-nav li a button:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a button:active,
+.sidebar-nav li a button:focus {
+    text-decoration: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}

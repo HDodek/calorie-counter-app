@@ -1,29 +1,57 @@
-<html>
+<!DOCTYPE html>
+
 <head>
-	<link rel="stylesheet" href="style.css">
-	<title>Calorie counter</title>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="food.png" >
+    <title>Calorie Counter App</title>
+
 </head>
+
 <body>
-	<h1>Calorie Counter App</h1>
-	<form>
-		<input type="text" id="name">meal</input>
-		<select>
-		  <option>meat</option>
-		  <option>wheat</option>
-		  <option>dairy product</option>
-		  <option>fruit, vegetable</option>
-		</select>
-		<input type="number" id="calories">calories</input>
-		<input type="datetime-local" id="date">date</input>
-	</form>
-	<button type="button" id="add">Add new meal</button>
-	<form>
-		<input type="date" id="filterdate"></input>
-	</form>
-	<button type="button" id="filter">Filter by day</button>
-	<button type="button" id="all">Show all</button>
-	<ul id="mealsList"></ul>
-	<div type="number" id="sumcalorie"></div>
-	<script src="index.js"></script>
+
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a> 
+                    	<button id="currentlist-sidebar">Current list</button>
+                    </a>
+                </li>
+                <li>
+                    <a> 
+                    	<button id="ideal-sidebar">Ideal Kcal</button>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div id="listContainer">
+    	<div type="number" id="sumcalorie"></div>
+    </div>
+    <div id="filter-box">
+   
+	  	<input id="filterdate" type="date"></input>
+	  	<button id="filterbutton" type="button">Filter by date</button>
+    </div> 
+    <div id="addfields">
+	    <form>
+			<input type="text" id="name">meal</input>
+			<select>
+			  <option>meat</option>
+			  <option>wheat</option>
+			  <option>dairy product</option>
+			  <option>fruit, vegetable</option>
+			</select>
+			<input type="number" id="calories">calories</input>
+			<input type="datetime-local" id="date">date</input>
+		</form>
+		<button type="button" id="add">Add new meal</button>
+		<form>
+    </div>
+    <script src="index.js"></script>
 </body>
+
 </html>
