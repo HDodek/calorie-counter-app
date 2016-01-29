@@ -39,11 +39,16 @@ function listAllItemsFromServer(callback) {
 
 function listItems(res) {
 	res.forEach(function(meal) {
-		var meals = document.createElement("p");
-		meals.innerText = meal.Name + " " + meal.Calorie + " " + "calories" + " " + meal.Date.split("T")[0];
-		mealsContainer.appendChild(meals);
+		listOneItem(meal);
 	})
 }
+
+function listOneItem(meal) {
+	var meals = document.createElement("p");
+		meals.innerText = meal.Name + " " + meal.Calorie + " " + "calories" + " " + meal.Date.split("T")[0];
+		mealsContainer.appendChild(meals);
+}
+
 listAllItemsFromServer(listItems);
 
 function sumCal(res) {
@@ -69,15 +74,13 @@ function postNewItemToServer(callback) {
 	req.send(JSON.stringify(text));
 	req.onreadystatechange = function () {
 		if (req.readyState === 4) {
-			var item = JSON.parse(req.response);
-			return callback;
+			return callback(text);
 		}
 	}
 }
 
 addButton.addEventListener("click", function() {
-	clearList();
-	postNewItemToServer(listAllItemsFromServer(listItems));
+	postNewItemToServer(listOneItem);
 	listAllItemsFromServer(sumCal);
 	nameInput.value = "";
 	dateInput.value = "";
