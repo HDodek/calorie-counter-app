@@ -1,5 +1,6 @@
 body {
     background-image: url("food.png");
+    position: relative;
 }
 
 @font-face {
@@ -20,46 +21,104 @@ body {
     display: block;
 }
 
-#filter-box {
+#filter-add-side {
+    position: absolute;
+    left: 900px;
     width: 300px;
-    border: 1px solid black;
+    height: 600px;
+    top: 40px;
+}
+
+#filter-box {
+    bottom: 200px;
     position: relative;
-    top: 150px;
-    left: 300px;
-    padding: 5px;
+    top: 30px;
+    padding-right: 20px,
 }
 
 #filterdate {
     position: relative;
-    margin-left: 25px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-shadow: 10px 10px 57px -20px rgba(0,0,0,0.75);
+    border-color: white;
+    opacity: 0.7;
+    font-family: verdana;
+
 }
 
 #filterbutton {
     position: relative;
     margin-left: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #6FE45A;
+    border-color: #6FE45A;
+    opacity: 0.8;
+}
+
+#name, #calories, #date {
+    margin-top: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-color: white;
+    opacity: 0.7;
+    font-family: verdana;
+}
+
+#add {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #6FE45A;
+    border-color: #6FE45A;
+    margin-top: 10px;
+    opacity: 0.8;
 }
 
 #listContainer {
-    border: 1px solid black;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
     width: 500px;
     left: 300px;
     position: relative;
     padding: 10px;
     padding-left: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    top: 30px;
 }
 
 #listContainer>p {
     font-family: quirlyc;
     font-style: bold;
-    font-size: 30px;
+    font-size: 28px;
+}
+
+#sumcalorie {
+    width: 150px;
+    font-family: quirlyc;
+    font-size: 25px;
+    font-weight: bold;
+    left: 600px;
+    position: relative;
+    top: 50px;
 }
 
 #addfields {
-    border: 1px solid black;
-    width: 800px;
-    left: 300px;
+    width: 300px;
     position: relative;
-    top: 200px;
+    top: 60px;
+    margin: 0;
 }
 
 #wrapper {
@@ -71,6 +130,10 @@ body {
 }
 
 #sidebar-wrapper {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     z-index: 1000;
     position: fixed;
     left: 250px;
@@ -79,6 +142,7 @@ body {
     margin-left: -250px;
     overflow-y: auto;
     background: #6FE45A;
+    opacity: 0.85;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -103,6 +167,8 @@ body {
     margin: 0;
     padding: 0;
     list-style: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .sidebar-nav li {
@@ -120,7 +186,8 @@ body {
     height: 60px;
     border-color: black;
     border: 0;
-    font-size: 35px;
+    font-size: 40px;
+    font-style: bold;
     margin-top: 5px;
     font-family: quirlyc;
 }

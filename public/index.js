@@ -8,10 +8,10 @@ var caloriesInput = document.getElementById('calories');
 var dateInput = document.getElementById('date');
 var mealsContainer = document.getElementById('listContainer');
 var addButton = document.getElementById('add');
-var allItemsButton = document.getElementById('all');
-var filterButton = document.getElementById('filter');
+var filterButton = document.getElementById('filterbutton');
 var dateFilterInput = document.getElementById('filterdate');
-var sumCalories = document.getElementById('sumcalorie')
+var sumCalories = document.getElementById('sumcalorie');
+var currentList = document.getElementById('currentlist-sidebar')
 
 function filterFromServer(url, callback) {
 	var req = new XMLHttpRequest();
@@ -40,7 +40,7 @@ function listAllItemsFromServer(callback) {
 function listItems(res) {
 	res.forEach(function(meal) {
 		var meals = document.createElement("p");
-		meals.innerText = meal.ID + "." + " " + meal.Name + " " + meal.Calorie + " " + "calories" + " " + meal.Date.split("T")[0];
+		meals.innerText = meal.Name + " " + meal.Calorie + " " + "calories" + " " + meal.Date.split("T")[0];
 		mealsContainer.appendChild(meals);
 	})
 }
@@ -78,6 +78,10 @@ function postNewItemToServer(callback) {
 addButton.addEventListener("click", function() {
 	clearList();
 	postNewItemToServer(listAllItemsFromServer(listItems));
+	listAllItemsFromServer(sumCal);
+	nameInput.value = "";
+	dateInput.value = "";
+	caloriesInput.value = "";
 });
 
 filterButton.addEventListener("click", function () {
@@ -87,7 +91,7 @@ filterButton.addEventListener("click", function () {
 	filterFromServer(newUrl, sumCal);
 });
 
-allItemsButton.addEventListener("click", function () {
+currentList.addEventListener("click", function () {
 	clearList();
 	listAllItemsFromServer(listItems);
 	listAllItemsFromServer(sumCal);
